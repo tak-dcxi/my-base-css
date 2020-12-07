@@ -1,0 +1,16 @@
+// 変数の定義
+// ブレークポイントはBootstrap4を参考にしています
+$breakpoint: (
+  'xs': 'screen and (min-width: 0)',
+  'sm': 'screen and (min-width: 544px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 992px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+// @mixinの定義
+@mixin mq($select: md) {
+  @media #{map-get($breakpoint, $select)} {
+    @content;
+  }
+}

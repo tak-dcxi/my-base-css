@@ -1,0 +1,522 @@
+/**
+ * このベースCSSは Normalize.css および sanitize.css を元に僕個人が複数のプロジェクトで共通で指定しておきたいスタイルをまとめたものです。
+ * author: TAK(https://twitter.com/tak_dcxi)
+ */
+
+/* ==========================================================================
+  Document
+  ========================================================================== */
+
+/**
+ * 1. ボックスの縦横幅に`margin`および`border`を含む。
+ * 2. ChromeとFirefoxのフォントレンダリングを合わせる。
+ * 3. Safariでのbodyの高さを整える。
+ * 4. iOSのタップ時のハイライトを無効化する。
+ * 5. スマートフォンを横向きにした時の文字の巨大化を防ぐ。
+ */
+html {
+  box-sizing: border-box; /* 1 */
+  -webkit-font-smoothing: antialiased; /* 2 */
+  -moz-osx-font-smoothing: grayscale; /* 2 */
+  height: 100%; /* 3 */
+  -webkit-tap-highlight-color: transparent; /* 4 */
+  -webkit-text-size-adjust: 100%; /* 5 */
+  width: 100%;
+}
+
+/**
+ * 1. ボックスの縦横幅に`margin`および`border`を含む。
+ * 2. `margin`はコンポーネント毎に設定したいのでブラウザのデフォルトのスタイルを含めてベースは0にしておく。
+ */
+*,
+::before,
+::after {
+  box-sizing: inherit; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * 1. Safariでのbodyの高さを整える。
+ * 2. 原則的に文章は禁則処理を行う。
+ */
+body {
+  background-color: $backgroundColor_base;
+  color: $fontColor_base;
+  font-family: $fontFamily_sansSerif;
+  line-height: $lineHeight_default;
+  min-height: 100%; /* 1 */
+  overflow-wrap: break-word; /* 2 */
+  padding: 0;
+  width: 100%;
+
+  @include mq(xs) {
+    font-size: $fontSize_small;
+  }
+
+  @include mq(md) {
+    font-size: $fontSize_middle;
+  }
+}
+
+/* ==========================================================================
+  Section & Heading
+  ========================================================================== */
+
+/**
+ * 1. IEでは`main`は`display:inline`のように扱われるため、それを防ぐ。
+ * 2. メインコンテンツ内は横スクロールを無効にして、横スクロールバーが出るのを防止する。
+ */
+main {
+  display: block; /* 1 */
+  overflow-x: hidden; /* 2 */
+}
+
+/**
+ * 1. 見出しのフォントサイズはブラウザ標準のそれを使うことがないのでリセットしておく。
+ * 2. 太字にしない見出しデザインが多いのでリセットする。
+ */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1em; /* 1 */
+  font-weight: normal; /* 2 */
+}
+
+/* ==========================================================================
+  Text
+  ========================================================================== */
+
+/**
+ * ブラウザ標準のスタイルをリセットする。詳細度が0.1.1なので上書き時は注意。
+ * Read it: https://zenn.dev/tak_dcxi/articles/f464f90a24f754b15dd9
+ */
+abbr[title] {
+  border-bottom: none;
+  text-decoration: underline;
+  text-decoration: underline dotted;
+}
+
+/**
+ * 太字はどんなブラウザでも太字で。
+ */
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 日本語では斜体を使用することが少ないのでリセットする。
+ */
+i,
+cite,
+em,
+address,
+dfn {
+  [lang='ja'] & {
+    font-style: normal;
+  }
+}
+
+/**
+ * `small`は小文字で使うとは限らないのでリセットしておく。
+ */
+small {
+  font-size: 1em;
+}
+
+/**
+ * あまり実務では使わない要素ではあるがNormalize.cssに含まれていたので念の為。
+ */
+code,
+kbd,
+samp {
+  font-family: $fontFamily_monospace;
+  font-size: rem(16);
+}
+
+/**
+ * 上付き表示のブラウザ標準のスタイルを統一する。
+ */
+sub,
+sup {
+  font-size: .75em;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -.25em;
+}
+
+sup {
+  top: -.5em;
+}
+
+/* ==========================================================================
+  Link
+  ========================================================================== */
+
+/**
+ * 1. 昔のブラウザではリンクに背景色がつくこともある。
+ * 2. テキストカラーは原則的に親要素のそれを継承する。
+ * 3. 多くのデザインでは`a`の下線は不要なことが多いので下線を取り除いているが、CMS案件では顧客がリンクを仕込むことを考慮して適宜下線を復活させるように。
+ */
+a {
+  background-color: transparent; /* 1 */
+  color: inherit; /* 2 */
+  text-decoration: none; /* 3 */
+}
+
+/* ==========================================================================
+  Grouping
+  ========================================================================== */
+
+/**
+ * 原則的にブラウザ標準のリストマーカーは不要になることが多いのでリセットしておくが、別途箇条書き用のスタイルは用意しておく。
+ */
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+/**
+ * 定義リストのブラウザ標準の`padding`は不要なことが多い。
+ */
+dl {
+  padding: 0;
+}
+
+/*
+ * すべてのブラウザで`display`を統一する
+ */
+details {
+  display: block;
+}
+
+summary {
+  display: list-item;
+}
+
+/**
+ * ブラウザ標準のスタイルをリセットする。
+ */
+hr {
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
+}
+
+/**
+ * ブラウザ標準のスタイルをリセットする。
+ */
+pre {
+  font-family: $fontFamily_monospace;
+  font-size: rem(16);
+}
+
+/* ==========================================================================
+  Replaced element
+  ========================================================================== */
+
+/**
+ * 縦位置を揃える。
+ */
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/**
+ * 1. ブラウザ標準のスタイルをリセットする。
+ * 2. 画像は原則的にフルード化する。`width`属性が付与されている場合は`max-width`は無効化されるが、保険のためにつけておく。
+ */
+img {
+  border: 0; /* 1 */
+  height: auto; /* 2 */
+  max-width: 100%; /* 2 */
+}
+
+/**
+ * `fill`属性のないSVGの色は親要素のテキストカラーを継承する。詳細度が0.1.1なので上書き時は注意。
+ * Read it: https://zenn.dev/tak_dcxi/articles/f464f90a24f754b15dd9
+ */
+svg:not([fill]) {
+  fill: currentColor;
+}
+
+/**
+ * IEでのはみ出しを防止する
+ */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/**
+ * iframeのボーダーは取り除く。
+ */
+iframe {
+  border-style: none;
+}
+
+/* ==========================================================================
+  Form
+  ========================================================================== */
+
+/**
+ * `input``button``select`のスタイルをリセットする。
+ * CMS案件などで顧客側でこれらが差し込まれた際にタイプセレクタでリセットしてしまうと困ることもあったのでclassで指定してオプトアウトできるようにしておく。
+ */
+.input,
+.button,
+.select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  color: inherit;
+  padding: 0;
+}
+
+.select::-ms-expand {
+  display: none;
+}
+
+/**
+ * font周りはブラウザで差異が激しいので一括リセットする。
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+  font: inherit;
+}
+
+/**
+ * IEで`overflow:hidden`されるのをデフォルトでは無効化しておく。
+ */
+button,
+input {
+  overflow: visible;
+}
+
+/**
+ * IE,Edge,Firefoxで`text-transform`されるのを防ぐ
+ */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. iOSとSafariで表示を統一する。
+ * 2. ボタンのカーソルは指マークにする。
+ */
+button,
+[type='submit'],
+[type='reset'],
+[type='button'] {
+  -webkit-appearance: button; /* 1 */
+  cursor: pointer; /* 2 */
+}
+
+/**
+ * Firefoxのフォーカスインジケーターの調整
+ * Credit: https://necolas.github.io/normalize.css/
+ */
+button::-moz-focus-inner,
+[type='button']::-moz-focus-inner,
+[type='reset']::-moz-focus-inner,
+[type='submit']::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * プレースホルダーのズレを防ぐ。
+ */
+input[type='text'] {
+  line-height: normal;
+}
+
+/**
+ * IEの入力内容の消去機能は非表示にする。
+ */
+[type='text']::-ms-clear {
+  visibility: hidden;
+}
+
+/**
+ * IEのマスクの一時的解除機能を非表示にする。
+ */
+[type='password']::-ms-reveal {
+  visibility: hidden;
+}
+
+/**
+ * モダンブラウザで表示を統一するためにChromeとFireFoxのスピニングを非表示にする。
+ */
+[type='number']::-webkit-outer-spin-button,
+[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+}
+
+/**
+ * 1. ChromeとSafariでアピアランスを追加。
+ * 2. Safariでのアウトラインの位置を調整。
+ */
+[type='search'] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * ChromeとSafariで余白を無効化する。
+ */
+[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. iOSとSafariでアピアランスをボタン化する。
+ * 2. Safariでのフォント周りの差異を調整する。
+ */
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/**
+ * IEでの`textarea`のスクロールバーをデフォルトでは消しておく。
+ */
+textarea {
+  overflow: auto;
+}
+
+/**
+ * デフォルトのスタイルをリセットする。
+ */
+fieldset {
+  border: 0;
+  min-width: auto;
+  padding: 0;
+}
+
+/**
+ * 1. IEでフォントカラーを継承する。
+ * 2. 見出しはブロック要素として扱ったほうが都合が良い。
+ * 3. paddingは不要なことが多いのでリセットする。
+ */
+legend {
+  color: inherit; /* 1 */
+  display: block; /* 2 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 2 */
+}
+
+/**
+ * Chrome,Firefox,Operaで縦の位置を揃える。
+ */
+progress {
+  vertical-align: baseline;
+}
+
+/* ==========================================================================
+  Accessibility
+  ========================================================================== */
+
+/**
+ * キーボードでアクセスできない要素のフォーカスインジケーターを無効化する。
+ */
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+/**
+ * `aria-busy="true"`が指定された要素ではカーソルを読み込みの時のものにする。
+ */
+[aria-busy='true'] {
+  cursor: progress;
+}
+
+/*
+ * `disabled`された要素ではカーソルで要求された操作が受け付けられないことを示す。
+ */
+[aria-disabled='true'],
+[disabled] {
+  cursor: not-allowed;
+}
+
+/**
+ * キーボード操作"以外"でフォーカスされた際はフォーカスインジケーターを消す。
+ * Safariで標準搭載されるまでは実装時に必ずfocus-visibleのPolyfillを導入する。
+ * Read it: https://zenn.dev/tak_dcxi/articles/f958e96888ee47
+ */
+.js-focus-visible :focus:not(.focus-visible) {
+  outline: 0;
+}
+
+/**
+ * スクリーンリーダー向けに隠しテキストを仕込む際に使う。inputを隠すときなどにも。
+ * Credit: https://github.com/mike-engel/a11y-css-reset
+ */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/**
+ * 「視差効果を減らす」を設定している場合はアニメーション時間を短くする。
+ * 有識者によると`none`より`1ms`で指定したほうが良いらしい。
+ */
+
+/* prettier-ignore */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation: 1ms !important;
+    scroll-behavior: auto !important;
+    transition: 1ms !important;
+  }
+}
+
+/* ==========================================================================
+  Other
+  ========================================================================== */
+
+/**
+ * サポート外のブラウザでも隠せるものは隠しておく
+ */
+template {
+  display: none;
+}
+
+[hidden] {
+  display: none;
+}

@@ -1,0 +1,29 @@
+// カラーパレット
+$color_dark: #333 !default;
+$color_light: #fafafa !default;
+
+// 背景色
+$backgroundColor_base: $color_light !default;
+
+// テキストカラー
+$fontColor_base: $color_dark !default;
+
+// フォントファミリー
+$fontFamily_sansSerif: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', meiryo, sans-serif !default;
+$fontFamily_mincho: 'Noto Serif JP', serif !default;
+$fontFamily_monospace: Consolas, Menlo, Courier, monospace !default;
+
+// フォントサイズ
+$fontSize_xsmall: rem(12);
+$fontSize_small: rem(14);
+$fontSize_middle: rem(16);
+$fontSize_large: rem(18);
+$fontSize_xlarge: rem(24);
+
+// 行間
+$lineHeight_small: 1.15 !default;
+$lineHeight_middle: 1.5 !default;
+$lineHeight_large: 1.75 !default;
+$lineHeight_xlarge: 2 !default;
+
+$lineHeight_default: $lineHeight_middle !default;

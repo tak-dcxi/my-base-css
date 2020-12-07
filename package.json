@@ -1,0 +1,15 @@
+{
+  "name": "my_base_css",
+  "version": "1.0.0",
+  "description": "複数のプロジェクトで使いまわしをしたい自分なりのベースCSS",
+  "main": "index.js",
+  "scripts": {
+    "build": "node-sass --importer node_modules/node-sass-globbing/index.js -o dist --output-style expanded src/style.scss "
+  },
+  "author": "TAK",
+  "license": "ISC",
+  "devDependencies": {
+    "node-sass": "^5.0.0",
+    "node-sass-globbing": "0.0.23"
+  }
+}

@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+//
+// ROOT
+// _base.................共通で指定しておきたいスタイルをここにまとめておきます。例外も含まれますが原則的に要素セレクタと属性セレクタで指定します。
+//
+// FUNCTIONS
+// _test.................pxをremに変換するfunctionです。
+//
+// VARIABLES
+// _test.................変数を上書きしてテストしたい時はここで指定します。
+// _global...............プロジェクト全体を通して使用される変数をここでまとめます。
+//
+// MIXINS
+// _mediaquery...........メディアクエリ用のmixinです。
+//
+// NOTE
+// 面倒くさかったのと時間がなかったのでコンパイラーにnode-sass使ったために`@import`使っていますが、Dart Sass使っている人は`@use`などを使いましょう。
+// node-sassはまだ`@use`に対応していなく置き換えようがない。
+//
+
+@import 'functions/*';
+
+@import 'variables/_test';
+@import 'variables/_global';
+
+@import 'mixins/*';
+
+@import '_base';

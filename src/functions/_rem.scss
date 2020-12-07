@@ -1,0 +1,6 @@
+// pxをremに変換するfunctionです
+// 引数に変換したい数値を入れてください
+// example - rem(24) => 1.5rem
+@function rem($fontSize) {
+  @return ($fontSize / 16) * 1rem;
+}
